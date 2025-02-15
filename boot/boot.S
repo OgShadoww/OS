@@ -80,4 +80,34 @@ init_protected_mode:
     mov al, '!'
     stosw
 
-    
+
+    call load_kernel
+
+    jmp $ 
+
+load_kernel:
+    mov ebx, kernel_start 
+    call ebx               
+    ret
+
+; ======== GDT (Global Descriptor Table) ========
+gdt_start:
+    dq 0                        
+gdt_code:
+    dw 0xFFFF, 0x0000, 0x9A, 0xCF  
+gdt_data:
+    dw 0xFFFF, 0x0000, 0x92, 0xCF 
+
+gdt_end:
+
+gdt_descriptor:
+    dw gdt_end - gdt_start - 1
+    dd gdt_start
+
+CODE_SEG equ gdt_code - gdt_start
+DATA_SEG equ gdt_data - gdt_start
+
+kernel_start equ 0x100000  
+
+times 510-($-$$) db 0     
+dw 0xAA55
