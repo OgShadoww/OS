@@ -24,3 +24,12 @@ mov al, 'S'
 int 0x10
 mov al, '.'
 int 0x10
+
+cli
+lgdt [gdt_descriptor
+
+mov eax, cr0        
+or eax, 1             
+mov cr0, eax 
+
+jmp CODE_SEG:init_protected_mode
