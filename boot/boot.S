@@ -4,5 +4,7 @@
 mov ah, 0x0E
 mov al, 'B'
 int 0x10
-mov al, 'B'
+mov al, 'o'
+int 0x10
+mov al, 'o'
 int 0x10
