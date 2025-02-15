@@ -33,3 +33,5 @@ or eax, 1
 mov cr0, eax 
 
 jmp CODE_SEG:init_protected_mode
+
+[BITS 32]
