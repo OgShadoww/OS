@@ -35,3 +35,49 @@ mov cr0, eax
 jmp CODE_SEG:init_protected_mode
 
 [BITS 32]
+[BITS 32]
+init_protected_mode:
+    mov ax, DATA_SEG     ; 7️⃣ Data segment
+    mov ds, ax
+    mov es, ax
+    mov fs, ax
+    mov gs, ax
+    mov ss, ax
+
+    mov esp, 0x90000     ; stack
+
+    ; ====== output "Protected Mode!" vue VGA (0xB8000) ======
+    mov edi, 0xB8000     ; VGA memory
+    mov al, 'P'
+    mov ah, 0x07         ; white text
+    stosw
+    mov al, 'r'
+    stosw
+    mov al, 'o'
+    stosw
+    mov al, 't'
+    stosw
+    mov al, 'e'
+    stosw
+    mov al, 'c'
+    stosw
+    mov al, 't'
+    stosw
+    mov al, 'e'
+    stosw
+    mov al, 'd'
+    stosw
+    mov al, ' '
+    stosw
+    mov al, 'M'
+    stosw
+    mov al, 'o'
+    stosw
+    mov al, 'd'
+    stosw
+    mov al, 'e'
+    stosw
+    mov al, '!'
+    stosw
+
+    
