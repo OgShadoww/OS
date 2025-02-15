@@ -26,7 +26,7 @@ mov al, '.'
 int 0x10
 
 cli
-lgdt [gdt_descriptor
+lgdt [gdt_descriptor]
 
 mov eax, cr0        
 or eax, 1             
@@ -34,7 +34,6 @@ mov cr0, eax
 
 jmp CODE_SEG:init_protected_mode
 
-[BITS 32]
 [BITS 32]
 init_protected_mode:
     mov ax, DATA_SEG     ; 7️⃣ Data segment
