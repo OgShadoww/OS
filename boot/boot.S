@@ -36,7 +36,7 @@ jmp CODE_SEG:init_protected_mode
 
 [BITS 32]
 init_protected_mode:
-    mov ax, DATA_SEG     ; 7️⃣ Data segment
+    mov ax, DATA_SEG     ; Data segment
     mov ds, ax
     mov es, ax
     mov fs, ax
@@ -78,7 +78,6 @@ init_protected_mode:
     stosw
     mov al, '!'
     stosw
-
 
     call load_kernel
 
